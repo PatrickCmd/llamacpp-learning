@@ -1,0 +1,10 @@
+boto3==1.38.39
+fastapi==0.115.13
+mangum==0.19.0
+uvicorn==0.34.3
+pypdf==5.6.0
+chromadb==1.0.13
+langchain==0.3.25
+langchain-aws==0.2.26
+langchain-community==0.3.25
+langchain-huggingface==0.3.0
