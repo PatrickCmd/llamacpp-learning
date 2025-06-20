@@ -126,3 +126,10 @@ Then run this command to deploy it (assuming you have AWS CLI already set up, an
 ```sh
 cdk deploy
 ```
+
+### Clean up
+To delete the deployed stack:
+
+```sh
+cdk destroy
+```
