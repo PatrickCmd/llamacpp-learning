@@ -32,7 +32,7 @@ def process_pdf(uploaded_file):
         logging.info("PDF loaded successfully.")
 
         text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=500, chunk_overlap=100
+            chunk_size=1500, chunk_overlap=100
         )
         chunks = text_splitter.split_documents(data)
         logging.info(f"PDF split into {len(chunks)} chunks.")
