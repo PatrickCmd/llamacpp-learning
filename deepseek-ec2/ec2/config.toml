@@ -1,0 +1,12 @@
+[deploy]
+bucket = 'cfn-acres-data-extractor-1001'
+region = 'us-east-1'
+stack_name = 'AcresDataExtractorUbuntuServer'
+vpc_stack_name = 'AcresDataExtractorNetwork'
+
+[parameters]
+VpcStackName = 'AcresDataExtractorNetwork'
+KeyName ='nwtbootcampkey-pem'
+InstanceType = 'g4dn.xlarge'
+UserDataS3Bucket = 'cfn-acres-data-extractor-1001'
+UserDataS3Key = 'user_data.tpl'

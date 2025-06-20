@@ -14,7 +14,8 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-model_id = "deepseek-r1:8b"
+model_id = "gemma3"
+embedding_model_id = "nomic-embed-text"
 
 def process_pdf(uploaded_file):
     if uploaded_file is None:
@@ -36,7 +37,7 @@ def process_pdf(uploaded_file):
         chunks = text_splitter.split_documents(data)
         logging.info(f"PDF split into {len(chunks)} chunks.")
 
-        embeddings = OllamaEmbeddings(model=model_id)
+        embeddings = OllamaEmbeddings(model=embedding_model_id)
         vectorstore = Chroma.from_documents(
             documents=chunks, embedding=embeddings, persist_directory="./chroma_db"
         )

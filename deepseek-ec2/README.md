@@ -1,6 +1,7 @@
 # Deploy DeepSeek on EC2
 [Youtube](https://www.youtube.com/watch?v=_jXeIxVUVnw)
 
+
 - Ubuntu 24.04 lts
 - g4dn.xlarge
 - 2 volumes (165 each) gp3
