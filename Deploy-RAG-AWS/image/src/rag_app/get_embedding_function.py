@@ -1,5 +1,13 @@
+import os
+
 from langchain_aws import BedrockEmbeddings
 from langchain.embeddings import HuggingFaceEmbeddings
+
+IS_USING_IMAGE_RUNTIME = bool(os.environ.get("IS_USING_IMAGE_RUNTIME", False))
+
+if IS_USING_IMAGE_RUNTIME:
+    os.environ["TRANSFORMERS_CACHE"] = "/tmp/huggingface"
+    os.environ["HF_HOME"] = "/tmp/huggingface"
 
 HF_EMBED_MODEL_ID = "BAAI/bge-small-en-v1.5"
 
@@ -8,7 +16,13 @@ HF_EMBED_MODEL_ID = "BAAI/bge-small-en-v1.5"
 class FallbackEmbeddings:
     def __init__(self, bedrock_model_id: str, hf_model_id: str):
         self.bedrock = BedrockEmbeddings(model_id=bedrock_model_id)
-        self.hf = HuggingFaceEmbeddings(model_name=hf_model_id)
+
+        if IS_USING_IMAGE_RUNTIME:
+            # Ensure HuggingFace cache is set to a writable location in Lambda
+            self.hf = HuggingFaceEmbeddings(model_name=hf_model_id, cache_folder="/tmp/huggingface")
+        else:
+            # Use default cache location for local or non-Lambda environments   
+            self.hf = HuggingFaceEmbeddings(model_name=hf_model_id)
 
     def embed_documents(self, documents: list[str]) -> list[list[float]]:
         try:

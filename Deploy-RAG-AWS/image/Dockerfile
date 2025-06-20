@@ -9,6 +9,13 @@ RUN pip install pysqlite3-binary
 # Install the specified packages
 RUN pip install -r requirements.txt --upgrade
 
+# Download and cache model
+RUN python3 -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('BAAI/bge-small-en-v1.5')"
+
+# Set HuggingFace cache to a writable location
+ENV TRANSFORMERS_CACHE=/tmp/huggingface
+ENV HF_HOME=/tmp/huggingface
+
 # For local testing.
 EXPOSE 8000
 
