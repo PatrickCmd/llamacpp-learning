@@ -1,6 +1,8 @@
 # Deploy RAG/AI App To AWS
 
 ## Getting Started
+- [Github code Reference](https://github.com/pixegami/deploy-rag-to-aws)
+- [Youtube Resource](https://www.youtube.com/watch?v=ldFONBo2CR0)
 
 ### Configure AWS
 
